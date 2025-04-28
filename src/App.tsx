@@ -1,8 +1,10 @@
 import { useState, useEffect } from 'react';
 import { ArrowDown, Download, Star } from 'lucide-react';
-
+import Card from './components/card';
+import CTA from './components/CTA';
+// https://www.xe.com/currencyconverter/
 // Define types for currencies and exchange rates
-type CurrencyCode = 'USD' | 'NGN' | 'EUR' | 'GBP';
+type CurrencyCode = 'USD' | 'INR' | 'EUR' | 'GBP';
 
 type ExchangeRates = {
   [key in CurrencyCode]: {
@@ -13,33 +15,31 @@ type ExchangeRates = {
 const CurrencyConverter = () => {
   const [amount, setAmount] = useState<string>("1000");
   const [fromCurrency, setFromCurrency] = useState<CurrencyCode>('USD');
-  const [toCurrency, setToCurrency] = useState<CurrencyCode>('NGN');
+  const [toCurrency, setToCurrency] = useState<CurrencyCode>('INR');
   const [convertedAmount, setConvertedAmount] = useState<number>(0);
   const [isValidInput, setIsValidInput] = useState<boolean>(true);
   
   // Exchange rates (simplified for demo)
   const exchangeRates: ExchangeRates = {
     USD: {
-      NGN: 1582.8,
+      INR: 83.33,
       EUR: 0.92,
       GBP: 0.79,
       USD: 1
     },
-    NGN: {
-      USD: 0.00063,
-      EUR: 0.00058,
-      GBP: 0.00050,
-      NGN: 1
+   INR: {
+      USD: 0.012,
+      INR: 1
     },
     EUR: {
       USD: 1.09,
-      NGN: 1721.4,
+      INR: 1721.4,
       GBP: 0.86,
       EUR: 1
     },
     GBP: {
       USD: 1.27,
-      NGN: 2003.7,
+      INR: 2003.7,
       EUR: 1.16,
       GBP: 1
     }
@@ -69,7 +69,7 @@ const CurrencyConverter = () => {
     
     // Prevent same currency selection
     if (newCurrency === toCurrency) {
-      setToCurrency(newCurrency === 'USD' ? 'NGN' : 'USD');
+      setToCurrency(newCurrency === 'USD' ? 'INR' : 'USD');
     }
   };
   
@@ -79,7 +79,7 @@ const CurrencyConverter = () => {
     
     // Prevent same currency selection
     if (newCurrency === fromCurrency) {
-      setFromCurrency(newCurrency === 'USD' ? 'NGN' : 'USD');
+      setFromCurrency(newCurrency === 'USD' ? 'INR' : 'USD');
     }
   };
   
@@ -94,6 +94,7 @@ const CurrencyConverter = () => {
   };
   
   return (
+    <>
     <div className="max-w-auto  mt-6 mb-6 flex items-center ">
       {/* Stars */}
       <div className="absolute inset-5">
@@ -144,7 +145,7 @@ const CurrencyConverter = () => {
                   <option value="USD">USD</option>
                   <option value="EUR">EUR</option>
                   <option value="GBP">GBP</option>
-                  <option value="NGN">NGN</option>
+                  <option value="NGN">INR</option>
                 </select>
                 <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-1 text-blue-300">
                   <span>▼</span>
@@ -187,7 +188,7 @@ const CurrencyConverter = () => {
                   className="appearance-none bg-blue-900 text-white px-2 py-1 pr-6 rounded"
                   aria-label="To Currency"
                 >
-                  <option value="NGN">NGN</option>
+                  <option value="NGN">INR</option>
                   <option value="USD">USD</option>
                   <option value="EUR">EUR</option>
                   <option value="GBP">GBP</option>
@@ -233,7 +234,11 @@ const CurrencyConverter = () => {
           </p> */}
         </div>
       </div>
+     
     </div>
+     <Card />
+    <CTA />
+     </>
   );
 };
 
