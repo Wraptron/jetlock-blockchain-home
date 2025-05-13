@@ -237,7 +237,7 @@ const CurrencyConverter = () => {
      
     </div>
      <Card />
-    <CTA />
+     <CTA />
      </>
   );
 };

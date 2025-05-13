@@ -16,6 +16,8 @@ const MoneyTransferHero: React.FC<MoneyTransferHeroProps> = ({ onDownloadClick }
           <p className="text-lg mb-8 max-w-lg">
             The JetLock app has everything you need for international money
             transfers. It's easy, secure, and has no surprise fees.
+            The World's first marketplace to compare real cash exchange rates from banks
+            and money changers around you.
           </p>
           <button 
             onClick={onDownloadClick}
